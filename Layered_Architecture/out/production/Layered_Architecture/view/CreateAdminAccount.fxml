@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="644.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateAdminAccountController">
+   <children>
+      <ImageView fitHeight="644.0" fitWidth="467.0" layoutY="-1.0" opacity="0.63" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@assests/images/rm222batch5-kul-06.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="85.0" layoutY="14.0" prefHeight="83.0" prefWidth="299.0" text="Create New Account" textFill="#e80606">
+         <font>
+            <Font name="Freestyle Script" size="51.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="85.0" layoutY="151.0" prefHeight="54.0" prefWidth="272.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 8;">
+         <children>
+            <Label layoutY="-9.0" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: white; -fx-border-color: white;" text="Name">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtName" layoutX="14.0" layoutY="15.0" onKeyReleased="#textFields_Key_Released" prefHeight="25.0" prefWidth="176.0" promptText="Siripala gune " style="-fx-background-color: white;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="85.0" layoutY="244.0" prefHeight="63.0" prefWidth="272.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 8;">
+         <children>
+            <TextField fx:id="txtId" layoutX="14.0" layoutY="10.0" onKeyReleased="#textFields_Key_Released" prefHeight="25.0" prefWidth="176.0" promptText="2000XXXXX" style="-fx-background-color: white;" />
+            <Label layoutY="-9.0" prefHeight="19.0" prefWidth="54.0" style="-fx-background-color: white; -fx-border-color: white;" text="Id">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="85.0" layoutY="352.0" prefHeight="54.0" prefWidth="272.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 8;">
+         <children>
+            <TextField fx:id="txtAddress" layoutX="12.0" layoutY="10.0" onKeyReleased="#textFields_Key_Released" prefHeight="25.0" prefWidth="176.0" promptText="Province,City,Street" style="-fx-background-color: white;" />
+            <Label layoutY="-9.0" prefHeight="19.0" prefWidth="66.0" style="-fx-background-color: white; -fx-border-color: white;" text="Address">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="94.0" layoutY="455.0" prefHeight="54.0" prefWidth="272.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 8;">
+         <children>
+            <Label layoutY="-9.0" prefHeight="19.0" prefWidth="66.0" style="-fx-background-color: white; -fx-border-color: white;" text="Password">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtPassword" layoutX="14.0" layoutY="10.0" onKeyReleased="#textFields_Key_Released" prefHeight="25.0" prefWidth="176.0" promptText="Password" style="-fx-background-color: white;" />
+         </children>
+      </AnchorPane>
+      <JFXButton id="btnSave" fx:id="btnSave" layoutX="151.0" layoutY="553.0" onAction="#btnSave_OnAction" prefHeight="44.0" prefWidth="158.0" style="-fx-cursor: hand; -fx-background-color: #003EFA; -fx-background-radius: 18;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
