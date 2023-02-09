@@ -14,7 +14,7 @@ public interface RiderDAO {
 
     Boolean existCustomer(String rid) throws SQLException, ClassNotFoundException ;
 
-    void delete(String rid) throws SQLException, ClassNotFoundException ;
+    boolean delete(String rid) throws SQLException, ClassNotFoundException ;
 
 
     Boolean Update(RiderDTO riderDTO) throws SQLException, ClassNotFoundException ;
