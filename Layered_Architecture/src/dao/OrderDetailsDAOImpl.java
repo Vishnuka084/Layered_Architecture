@@ -2,24 +2,29 @@ package dao;
 
 import model.CustomerDTO;
 import model.OrderDTO;
+import model.OrderDetailDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OrderDetailsDAOImpl implements CrudDAO<OrderDTO,String>{
-
+public class OrderDetailsDAOImpl implements CrudDAO<OrderDetailDTO,String>{
     @Override
-    public ArrayList<OrderDTO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean insert(OrderDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean insert(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
+            return SQLUtil.executeUpdate("INSERT INTO OrderDetails (oid, itemCode, unitPrice, qty) VALUES (?,?,?,?)",dto.getOid(),dto.getItemCode(),dto.getUnitPrice(),dto.getQty());
     }
 
     @Override
     public Boolean exist(String s) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public OrderDetailDTO search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -29,7 +34,7 @@ public class OrderDetailsDAOImpl implements CrudDAO<OrderDTO,String>{
     }
 
     @Override
-    public Boolean Update(OrderDTO dto) throws SQLException, ClassNotFoundException {
+    public Boolean Update(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -37,4 +42,5 @@ public class OrderDetailsDAOImpl implements CrudDAO<OrderDTO,String>{
     public String generateNewId() throws SQLException, ClassNotFoundException {
         return null;
     }
+
 }

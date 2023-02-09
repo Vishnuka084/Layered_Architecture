@@ -2,7 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.VehicaleDAO;
+import dao.CrudDAO;
 import dao.VehicaleDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -37,7 +37,7 @@ public class ManageVehicaleFormController {
     public TableView<VehicaleTM> tblVehicale;
 
     //property injection (DI)
-    private final VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
+    private final CrudDAO<VehicaleDTO,String> vehicaleDAO = new VehicaleDAOImpl();
 
 
     public void initialize() {
@@ -72,7 +72,7 @@ public class ManageVehicaleFormController {
         try {
 
 
-            ArrayList<VehicaleDTO> allVehicales = vehicaleDAO.getAllVehicales();
+            ArrayList<VehicaleDTO> allVehicales = vehicaleDAO.getAll();
 
             for (VehicaleDTO vehicale : allVehicales) {
                 tblVehicale.getItems().add(new VehicaleTM(vehicale.getVid(),vehicale.getName(),vehicale.getColour()));
@@ -149,7 +149,7 @@ public class ManageVehicaleFormController {
                 if (existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, vid + " already exists").show();
                 }
-                vehicaleDAO.insertVehicale(new VehicaleDTO(vid,name,colour));
+                vehicaleDAO.insert(new VehicaleDTO(vid,name,colour));
 
                 tblVehicale.getItems().add(new VehicaleTM(vid, name, colour));
             } catch (SQLException e) {
@@ -204,7 +204,7 @@ public class ManageVehicaleFormController {
 
     boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
 
-        return vehicaleDAO.existVehicale(vid);
+        return vehicaleDAO.exist(vid);
     }
 
     private void initUI() {

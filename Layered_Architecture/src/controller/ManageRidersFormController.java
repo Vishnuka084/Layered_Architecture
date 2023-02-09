@@ -2,7 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.RiderDAO;
+import dao.CrudDAO;
 import dao.RiderDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,7 +36,7 @@ public class ManageRidersFormController {
     public JFXButton btnDelete;
     public TableView<RiderTM> tblRiders;
     //property injection
-    private  RiderDAO riderDAO = new RiderDAOImpl();
+    private CrudDAO<RiderDTO,String> riderDAO = new RiderDAOImpl();
 
 
     public void initialize() {
@@ -71,7 +71,7 @@ public class ManageRidersFormController {
 
         try {
 
-            ArrayList<RiderDTO> allRider = riderDAO.getAllRiders();
+            ArrayList<RiderDTO> allRider = riderDAO.getAll();
 
             for (RiderDTO rider : allRider) {
                 tblRiders.getItems().add(new RiderTM(rider.getRid(),rider.getName(),rider.getAddress()));
@@ -168,7 +168,7 @@ public class ManageRidersFormController {
                     new Alert(Alert.AlertType.ERROR, rid + " already exists").show();
                 }
 
-                riderDAO.insertRider(new RiderDTO(rid,name,address));
+                riderDAO.insert(new RiderDTO(rid,name,address));
 
                 tblRiders.getItems().add(new RiderTM(rid, name, address));
             } catch (SQLException e) {
@@ -204,7 +204,7 @@ public class ManageRidersFormController {
 
     boolean existRider(String rid) throws SQLException, ClassNotFoundException {
 
-        return riderDAO.existCustomer(rid);
+        return riderDAO.exist(rid);
 
     }
 
