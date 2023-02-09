@@ -3,7 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.CrudDAO;
-import dao.VehicaleDAOImpl;
+import dao.custom.impl.VehicaleDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

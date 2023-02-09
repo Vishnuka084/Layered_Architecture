@@ -1,13 +1,13 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
+import dao.custom.VehicaleDAO;
 
 import model.VehicaleDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class VehicaleDAOImpl implements VehicaleDAO{
+public class VehicaleDAOImpl implements VehicaleDAO {
     @Override
     public ArrayList<VehicaleDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;

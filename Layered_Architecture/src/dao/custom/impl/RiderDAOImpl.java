@@ -1,13 +1,12 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
-import model.CustomerDTO;
+import dao.custom.RiderDAO;
 import model.RiderDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class RiderDAOImpl implements RiderDAO{
+public class RiderDAOImpl implements RiderDAO {
     @Override
     public ArrayList<RiderDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
