@@ -2,7 +2,6 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CustomerDAOImpl;
 import dao.RiderDAO;
 import dao.RiderDAOImpl;
 import javafx.application.Platform;
@@ -12,13 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.CustomerDTO;
 import model.RiderDTO;
 import view.tdm.RiderTM;
 
@@ -38,6 +35,8 @@ public class ManageRidersFormController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public TableView<RiderTM> tblRiders;
+    //property injection
+    private  RiderDAO riderDAO = new RiderDAOImpl();
 
 
     public void initialize() {
@@ -69,10 +68,9 @@ public class ManageRidersFormController {
 
     private void loadAllRiders() {
         tblRiders.getItems().clear();
-        /*Get all customers*/
+
         try {
 
-            RiderDAO riderDAO = new RiderDAOImpl();
             ArrayList<RiderDTO> allRider = riderDAO.getAllRiders();
 
             for (RiderDTO rider : allRider) {
@@ -125,7 +123,7 @@ public class ManageRidersFormController {
 
     private String generateNewId() {
         try {
-            RiderDAO riderDAO = new RiderDAOImpl();
+
             return riderDAO.generateNewId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new rid " + e.getMessage()).show();
@@ -169,7 +167,7 @@ public class ManageRidersFormController {
                 if (existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, rid + " already exists").show();
                 }
-                RiderDAO riderDAO = new RiderDAOImpl();
+
                 riderDAO.insertRider(new RiderDTO(rid,name,address));
 
                 tblRiders.getItems().add(new RiderTM(rid, name, address));
@@ -181,12 +179,12 @@ public class ManageRidersFormController {
 
 
         } else {
-            /*Update customer*/
+
             try {
                 if (!existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + rid).show();
                 }
-                RiderDAO riderDAO = new RiderDAOImpl();
+
                 riderDAO.Update(new RiderDTO(rid,name,address));
 
             } catch (SQLException e) {
@@ -205,7 +203,7 @@ public class ManageRidersFormController {
     }
 
     boolean existRider(String rid) throws SQLException, ClassNotFoundException {
-        RiderDAOImpl riderDAO = new RiderDAOImpl();
+
         return riderDAO.existCustomer(rid);
 
     }
@@ -217,7 +215,7 @@ public class ManageRidersFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such rider associated with the rid " + rid).show();
             }
 
-            RiderDAO riderDAO = new RiderDAOImpl();
+
             riderDAO.delete(rid);
 
 
