@@ -6,29 +6,29 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class CustomerDAOImpl implements CrudDAO {
+public class CustomerDAOImpl implements CrudDAO <CustomerDTO,String>{
     @Override
-    public ArrayList<Object> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean insert(Object dto) throws SQLException, ClassNotFoundException {
+    public boolean insert(CustomerDTO dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public Boolean exist(Object id) throws SQLException, ClassNotFoundException {
+    public Boolean exist(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean delete(Object id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String s) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public Boolean Update(Object dto) throws SQLException, ClassNotFoundException {
+    public Boolean Update(CustomerDTO dto) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -36,6 +36,64 @@ public class CustomerDAOImpl implements CrudDAO {
     public String generateNewId() throws SQLException, ClassNotFoundException {
         return null;
     }
+//    @Override
+//    public ArrayList getAll() throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean insert(Object dto) throws SQLException, ClassNotFoundException {
+//        return false;
+//    }
+//
+//    @Override
+//    public Boolean exist(Object o) throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean delete(Object o) throws SQLException, ClassNotFoundException {
+//        return false;
+//    }
+//
+//    @Override
+//    public Boolean Update(Object dto) throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public String generateNewId() throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//    @Override
+//    public ArrayList<Object> getAll() throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean insert(Object dto) throws SQLException, ClassNotFoundException {
+//        return false;
+//    }
+//
+//    @Override
+//    public Boolean exist(Object id) throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean delete(Object id) throws SQLException, ClassNotFoundException {
+//        return false;
+//    }
+//
+//    @Override
+//    public Boolean Update(Object dto) throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
+//
+//    @Override
+//    public String generateNewId() throws SQLException, ClassNotFoundException {
+//        return null;
+//    }
 //    @Override
 //    public ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException {
 //        return null;
