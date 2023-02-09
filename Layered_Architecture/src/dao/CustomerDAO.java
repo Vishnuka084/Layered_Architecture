@@ -1,7 +1,6 @@
 package dao;
 
 
-import db.DBConnection;
 import model.CustomerDTO;
 
 import java.sql.*;
@@ -14,7 +13,7 @@ public interface CustomerDAO {
 
     Boolean existCustomer(String id) throws SQLException, ClassNotFoundException ;
 
-    void delete(String id) throws SQLException, ClassNotFoundException ;
+    boolean delete(String id) throws SQLException, ClassNotFoundException ;
 
     Boolean Update(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException ;
 
