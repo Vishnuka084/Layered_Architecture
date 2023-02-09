@@ -13,7 +13,7 @@ public interface VehicaleDAO {
 
     Boolean existVehicale(String vid) throws SQLException, ClassNotFoundException ;
 
-    void delete(String vid) throws SQLException, ClassNotFoundException ;
+    boolean delete(String vid) throws SQLException, ClassNotFoundException ;
 
     Boolean Update(VehicaleDTO vehicaleDTO) throws SQLException, ClassNotFoundException ;
 
