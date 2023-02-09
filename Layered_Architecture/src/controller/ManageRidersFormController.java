@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.CustomerDAOImpl;
+import dao.RiderDAO;
 import dao.RiderDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -71,7 +72,7 @@ public class ManageRidersFormController {
         /*Get all customers*/
         try {
 
-            RiderDAOImpl riderDAO = new RiderDAOImpl();
+            RiderDAO riderDAO = new RiderDAOImpl();
             ArrayList<RiderDTO> allRider = riderDAO.getAllRiders();
 
             for (RiderDTO rider : allRider) {
@@ -124,7 +125,7 @@ public class ManageRidersFormController {
 
     private String generateNewId() {
         try {
-            RiderDAOImpl riderDAO = new RiderDAOImpl();
+            RiderDAO riderDAO = new RiderDAOImpl();
             return riderDAO.generateNewId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new rid " + e.getMessage()).show();
@@ -168,7 +169,7 @@ public class ManageRidersFormController {
                 if (existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, rid + " already exists").show();
                 }
-                RiderDAOImpl riderDAO = new RiderDAOImpl();
+                RiderDAO riderDAO = new RiderDAOImpl();
                 riderDAO.insertRider(new RiderDTO(rid,name,address));
 
                 tblRiders.getItems().add(new RiderTM(rid, name, address));
@@ -185,7 +186,7 @@ public class ManageRidersFormController {
                 if (!existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + rid).show();
                 }
-                RiderDAOImpl riderDAO = new RiderDAOImpl();
+                RiderDAO riderDAO = new RiderDAOImpl();
                 riderDAO.Update(new RiderDTO(rid,name,address));
 
             } catch (SQLException e) {
@@ -216,7 +217,7 @@ public class ManageRidersFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such rider associated with the rid " + rid).show();
             }
 
-            RiderDAOImpl riderDAO = new RiderDAOImpl();
+            RiderDAO riderDAO = new RiderDAOImpl();
             riderDAO.delete(rid);
 
 

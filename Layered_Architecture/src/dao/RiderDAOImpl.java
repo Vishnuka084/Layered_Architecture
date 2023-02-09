@@ -7,7 +7,9 @@ import model.RiderDTO;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class RiderDAOImpl {
+public class RiderDAOImpl implements RiderDAO{
+
+    @Override
     public ArrayList<RiderDTO> getAllRiders() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         Statement stm = connection.createStatement();
@@ -21,6 +23,7 @@ public class RiderDAOImpl {
         }
         return allRider;
     }
+    @Override
     public boolean insertRider(RiderDTO riderDTO) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO Rider (rid,name, address) VALUES (?,?,?)");
@@ -31,6 +34,7 @@ public class RiderDAOImpl {
 
 
     }
+    @Override
     public Boolean existCustomer(String rid) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("SELECT rid FROM Rider WHERE rid=?");
@@ -38,6 +42,7 @@ public class RiderDAOImpl {
         return pstm.executeQuery().next();
     }
 
+    @Override
     public void delete(String rid) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("DELETE FROM Rider WHERE rid=?");
@@ -45,6 +50,7 @@ public class RiderDAOImpl {
         pstm.executeUpdate();
     }
 
+    @Override
     public Boolean Update(RiderDTO riderDTO) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("UPDATE Rider SET name=?, address=? WHERE rid=?");
@@ -53,6 +59,7 @@ public class RiderDAOImpl {
         pstm.setString(3, riderDTO.getRid());
         return pstm.executeUpdate()>0;
     }
+    @Override
     public  String generateNewId() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         ResultSet rst = connection.createStatement().executeQuery("SELECT rid FROM Rider ORDER BY rid DESC LIMIT 1;");
