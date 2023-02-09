@@ -51,13 +51,11 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
+    private final CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final ItemDAO itemDAO = new ItemDAOImpl();
+    private final OrderDAO orderDAO = new OrderDAOImpl();
+    private final OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
 
-    private CrudDAO<CustomerDTO,String> customerDAO = new CustomerDAOImpl();
-    private CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-    private CrudDAO<OrderDTO,String > orderDAO = new OrderDAOImpl();
-    private CrudDAO<OrderDetailDTO,String> orderDetailsDAO = new OrderDetailsDAOImpl();
-
-    private String oderId;
 
 
     public void initialize() throws SQLException, ClassNotFoundException {
@@ -344,7 +342,7 @@ public class PlaceOrderFormController {
                 ItemDTO item = findItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
-                Boolean update = itemDAO.Update(item);
+                Boolean update = this.itemDAO.Update(item);
 
                 if (!update) {
                     connection.rollback();

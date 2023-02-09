@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class OrderDetailsDAOImpl implements OrderDetailsDAO{
     @Override
-    public ArrayList<OrderDetailsDAO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean insert(OrderDetailsDAO dto) throws SQLException, ClassNotFoundException {
+    public boolean insert(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -24,7 +24,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO{
     }
 
     @Override
-    public OrderDetailsDAO search(String s) throws SQLException, ClassNotFoundException {
+    public OrderDetailDTO search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO{
     }
 
     @Override
-    public Boolean Update(OrderDetailsDAO dto) throws SQLException, ClassNotFoundException {
+    public Boolean Update(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -42,6 +42,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO{
     public String generateNewId() throws SQLException, ClassNotFoundException {
         return null;
     }
+
 //    @Override
 //    public ArrayList<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
 //        return null;
