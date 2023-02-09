@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class OrderDAOImpl implements CrudDAO <OrderDTO,String>{
 
-
     @Override
     public ArrayList<OrderDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;

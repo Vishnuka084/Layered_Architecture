@@ -312,7 +312,7 @@ public class PlaceOrderFormController {
 
     public void btnPlaceOrder_OnAction(ActionEvent actionEvent) {
         boolean b = saveOrder(orderId, LocalDate.now(), cmbCustomerId.getValue(),
-                tblOrderDetails.getItems().stream().map(tm -> new OrderDetailDTO(tm.getCode(), tm.getQty(), tm.getUnitPrice())).collect(Collectors.toList()));
+                tblOrderDetails.getItems().stream().map(tm -> new OrderDetailDTO(orderId,tm.getCode(), tm.getQty(), tm.getUnitPrice())).collect(Collectors.toList()));
 
         if (b) {
             new Alert(Alert.AlertType.INFORMATION, "Order has been placed successfully").show();
@@ -331,8 +331,8 @@ public class PlaceOrderFormController {
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
         /*Transaction*/
-        Connection connection = null;
         try {
+            Connection connection = DBConnection.getDbConnection().getConnection();
             //di
             CrudDAO<OrderDTO,String> orderDAO = new OrderDAOImpl();
 
@@ -353,6 +353,7 @@ public class PlaceOrderFormController {
             }
 
             CrudDAO<OrderDetailDTO,String> orderDetailsDAO = new OrderDetailsDAOImpl();
+            CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
 
 
             for (OrderDetailDTO detail : orderDetails) {
@@ -371,8 +372,8 @@ public class PlaceOrderFormController {
 
                 //update items
 
-                CrudDAO<ItemDTO,String> itemDAO = new ItemDAOImpl();
-                Boolean update = itemDAO.Update(new ItemDTO(item.getCode(), item.getDescription(), item.getUnitPrice(), item.getQtyOnHand()));
+
+                Boolean update = itemDAO.Update(item);
 
                 if (!update) {
                     connection.rollback();
