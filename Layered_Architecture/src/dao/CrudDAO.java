@@ -6,12 +6,12 @@ import model.CustomerDTO;
 import java.sql.*;
 import java.util.ArrayList;
 
-public interface CustomerDAO {
-    ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException ;
+public interface CrudDAO {
+    ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException ;
 
-    boolean insertCustomer(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException ;
+    boolean insert(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException ;
 
-    Boolean existCustomer(String id) throws SQLException, ClassNotFoundException ;
+    Boolean exist(String id) throws SQLException, ClassNotFoundException ;
 
     boolean delete(String id) throws SQLException, ClassNotFoundException ;
 
