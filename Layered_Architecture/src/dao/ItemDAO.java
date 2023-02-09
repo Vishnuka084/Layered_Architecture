@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface ItemDAO {
     ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException;
 
-    void delete(String code) throws SQLException, ClassNotFoundException ;
+    boolean delete(String code) throws SQLException, ClassNotFoundException ;
 
     boolean insertItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException;
 
