@@ -2,7 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CustomerDAOImpl;
+import dao.VehicaleDAO;
 import dao.VehicaleDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -68,7 +68,7 @@ public class ManageVehicaleFormController {
         tblVehicale.getItems().clear();
         try {
 
-            VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+            VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
             ArrayList<VehicaleDTO> allVehicales = vehicaleDAO.getAllVehicales();
 
             for (VehicaleDTO vehicale : allVehicales) {
@@ -99,7 +99,7 @@ public class ManageVehicaleFormController {
 
     private String generateNewId() {
         try {
-            VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+            VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
             return vehicaleDAO.generateNewId();
 
         } catch (SQLException e) {
@@ -146,7 +146,7 @@ public class ManageVehicaleFormController {
                 if (existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, vid + " already exists").show();
                 }
-                VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+                VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
                 vehicaleDAO.insertVehicale(new VehicaleDTO(vid,name,colour));
 
                 tblVehicale.getItems().add(new VehicaleTM(vid, name, colour));
@@ -163,7 +163,7 @@ public class ManageVehicaleFormController {
                 if (!existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the id " + vid).show();
                 }
-                VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+                VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
                 vehicaleDAO.Update(new VehicaleDTO(vid,name,colour));
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the vehicale " + vid + e.getMessage()).show();
@@ -187,7 +187,7 @@ public class ManageVehicaleFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the vid " + vid).show();
             }
 
-            VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+            VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
             vehicaleDAO.delete(vid);
 
             tblVehicale.getItems().remove(tblVehicale.getSelectionModel().getSelectedItem());
@@ -202,7 +202,7 @@ public class ManageVehicaleFormController {
     }
 
     boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
-        VehicaleDAOImpl vehicaleDAO = new VehicaleDAOImpl();
+        VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
         return vehicaleDAO.existVehicale(vid);
     }
 

@@ -7,8 +7,9 @@ import model.VehicaleDTO;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class VehicaleDAOImpl {
+public class VehicaleDAOImpl implements VehicaleDAO{
 
+    @Override
     public ArrayList<VehicaleDTO> getAllVehicales() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         Statement stm = connection.createStatement();
@@ -22,6 +23,7 @@ public class VehicaleDAOImpl {
         }
         return allVehicales;
     }
+    @Override
     public boolean insertVehicale(VehicaleDTO vehicaleDTO) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO Vehicale (vid,name, colour) VALUES (?,?,?)");
@@ -32,6 +34,7 @@ public class VehicaleDAOImpl {
 
 
     }
+    @Override
     public Boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("SELECT vid FROM Vehicale WHERE vid=?");
@@ -39,13 +42,14 @@ public class VehicaleDAOImpl {
         return pstm.executeQuery().next();
     }
 
+    @Override
     public void delete(String vid) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("DELETE FROM Vehicale WHERE vid=?");
         pstm.setString(1, vid);
         pstm.executeUpdate();
     }
-
+    @Override
     public Boolean Update(VehicaleDTO vehicaleDTO) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm = connection.prepareStatement("UPDATE Vehicale SET name=?, colour=? WHERE vid=?");
@@ -54,6 +58,7 @@ public class VehicaleDAOImpl {
         pstm.setString(3, vehicaleDTO.getVid());
         return pstm.executeUpdate()>0;
     }
+    @Override
     public  String generateNewId() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
         ResultSet rst = connection.createStatement().executeQuery("SELECT vid FROM Vehicale ORDER BY vid DESC LIMIT 1;");
