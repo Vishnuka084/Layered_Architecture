@@ -37,11 +37,13 @@ public class ItemDAOImpl implements ItemDAO{
     }
     @Override
     public Boolean existItems(String code) throws SQLException, ClassNotFoundException {
-          return SQLUtil.executeUpdate("SELECT code FROM Item WHERE code=?",code);
+        ResultSet rst = SQLUtil.executeQuery("SELECT code FROM Item WHERE code=?", code);
+        return rst.next();
+
     }
     @Override
     public  String generateNewId() throws SQLException, ClassNotFoundException {
-        SQLUtil.executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1;")
+        ResultSet rst = SQLUtil.executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1;");
         if (rst.next()) {
             String id = rst.getString("code");
             int newItemId = Integer.parseInt(id.replace("I00-", "")) + 1;

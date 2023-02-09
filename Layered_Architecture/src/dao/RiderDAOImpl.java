@@ -25,7 +25,8 @@ public class RiderDAOImpl implements RiderDAO{
 
     @Override
     public Boolean existCustomer(String rid) throws SQLException, ClassNotFoundException {
-          return SQLUtil.executeUpdate("SELECT rid FROM Rider WHERE rid=?",rid);
+        ResultSet rst = SQLUtil.executeQuery("SELECT rid FROM Rider WHERE rid=?",rid);
+        return rst.next();
     }
 
     @Override

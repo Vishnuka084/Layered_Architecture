@@ -30,7 +30,8 @@ public class VehicaleDAOImpl implements VehicaleDAO{
 
     @Override
     public Boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
-        return SQLUtil.executeUpdate("SELECT vid FROM Vehicale WHERE vid=?",vid);
+        ResultSet rst = SQLUtil.executeQuery("SELECT vid FROM Vehicale WHERE vid=?", vid);
+        return rst.next();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class VehicaleDAOImpl implements VehicaleDAO{
     public  String generateNewId() throws SQLException, ClassNotFoundException {
 //        Connection connection = DBConnection.getDbConnection().getConnection();
 //        ResultSet rst = connection.createStatement().executeQuery("SELECT vid FROM Vehicale ORDER BY vid DESC LIMIT 1;");
-        SQLUtil.executeQuery("SELECT vid FROM Vehicale ORDER BY vid DESC LIMIT 1;")
+        ResultSet rst = SQLUtil.executeQuery("SELECT vid FROM Vehicale ORDER BY vid DESC LIMIT 1;");
         if (rst.next()) {
             String vid = rst.getString("vid");
             int newVehicaleId = Integer.parseInt(vid.replace("V00-", "")) + 1;
