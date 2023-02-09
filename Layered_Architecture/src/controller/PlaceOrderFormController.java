@@ -344,7 +344,7 @@ public class PlaceOrderFormController {
             connection.setAutoCommit(false);
 
             CrudDAO<OrderDTO,String> orderDAO1 = new OrderDAOImpl();
-            boolean insert = orderDAO1.insert(new OrderDTO(orderId, orderDate, customerId);
+            boolean insert = orderDAO1.insert(new OrderDTO(orderId, orderDate, customerId));
 
             if (insert) {
                 connection.rollback();
