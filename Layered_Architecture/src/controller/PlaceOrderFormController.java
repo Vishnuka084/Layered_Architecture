@@ -55,11 +55,11 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
-    private final CustomerDAO customerDAO = new CustomerDAOImpl();
-    private final ItemDAO itemDAO = new ItemDAOImpl();
-    private final OrderDAO orderDAO = new OrderDAOImpl();
-    private final OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
-    private final QueryDAOImpl queryDAO = new QueryDAOImpl();
+//    private final CustomerDAO customerDAO = new CustomerDAOImpl();
+//    private final ItemDAO itemDAO = new ItemDAOImpl();
+//    private final OrderDAO orderDAO = new OrderDAOImpl();
+//    private final OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
+//    private final QueryDAOImpl queryDAO = new QueryDAOImpl();
 
 
     public void initialize() throws SQLException, ClassNotFoundException {
@@ -319,54 +319,56 @@ public class PlaceOrderFormController {
     }
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
-
-        try {
-            Connection connection = DBConnection.getDbConnection().getConnection();
-
-            if (orderDAO.exist(orderId)) {
-
-            }
-            connection.setAutoCommit(false);
-
-            boolean insert = orderDAO.insert(new OrderDTO(orderId, orderDate, customerId));
-
-            if (insert) {
-                connection.rollback();
-                connection.setAutoCommit(true);
-                return false;
-            }
-
-
-            for (OrderDetailDTO detail : orderDetails) {
-                boolean insert1 = orderDetailsDAO.insert(detail);
-
-                if (insert1) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-
-                ItemDTO item = findItem(detail.getItemCode());
-                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
-
-                Boolean update = this.itemDAO.Update(item);
-
-                if (!update) {
-                    connection.rollback();
-                    connection.setAutoCommit(true);
-                    return false;
-                }
-            }
-            connection.commit();
-            connection.setAutoCommit(true);
-            return true;
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
+//
+//        // transaction
+//
+//        try {
+//            Connection connection = DBConnection.getDbConnection().getConnection();
+//
+//            if (orderDAO.exist(orderId)) {
+//
+//            }
+//            connection.setAutoCommit(false);
+//
+//            boolean insert = orderDAO.insert(new OrderDTO(orderId, orderDate, customerId));
+//
+//            if (insert) {
+//                connection.rollback();
+//                connection.setAutoCommit(true);
+//                return false;
+//            }
+//
+//
+//            for (OrderDetailDTO detail : orderDetails) {
+//                boolean insert1 = orderDetailsDAO.insert(detail);
+//
+//                if (insert1) {
+//                    connection.rollback();
+//                    connection.setAutoCommit(true);
+//                    return false;
+//                }
+//
+//                ItemDTO item = findItem(detail.getItemCode());
+//                item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
+//
+//                Boolean update = this.itemDAO.Update(item);
+//
+//                if (!update) {
+//                    connection.rollback();
+//                    connection.setAutoCommit(true);
+//                    return false;
+//                }
+//            }
+//            connection.commit();
+//            connection.setAutoCommit(true);
+//            return true;
+//
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
     }
 
 
