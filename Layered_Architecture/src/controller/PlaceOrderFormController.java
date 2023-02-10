@@ -1,5 +1,6 @@
 package controller;
 
+import bo.PurchaseOrderBO;
 import bo.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -39,6 +40,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PlaceOrderFormController {
+
+    private PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
 
     public AnchorPane root;
     public JFXButton btnPlaceOrder;
@@ -105,8 +108,6 @@ public class PlaceOrderFormController {
 
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-
-                        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
                         CustomerDTO search = purchaseOrderBO.searchCustomer(newValue + "");
                         txtCustomerName.setText(search.getName());
                     } catch (SQLException e) {
@@ -130,8 +131,6 @@ public class PlaceOrderFormController {
                     if (!existItem(newItemCode + "")) {
 
                     }
-         //           ItemDTO item = itemDAO.search(newItemCode + "");
-                    PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
                     ItemDTO item = purchaseOrderBO.searchItem(newItemCode + "");
 
                     txtDescription.setText(item.getDescription());
@@ -177,21 +176,15 @@ public class PlaceOrderFormController {
     }
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
          return purchaseOrderBO.checkItemsIsAvailabel(code);
-        // return itemDAO.exist(code);
     }
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-     //   return customerDAO.exist(id);
-        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
         return purchaseOrderBO.checkCustomerIsAvailabel(id);
     }
 
     public String generateNewOrderId() {
         try {
-            // return orderDAO.generateNewId();
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
              return purchaseOrderBO.generateNewOrderID();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
@@ -203,8 +196,6 @@ public class PlaceOrderFormController {
 
     private void loadAllCustomerIds() {
         try {
-
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             ArrayList<CustomerDTO> all = purchaseOrderBO.getAllCustomers();
             for (CustomerDTO customerDTO : all) {
                 cmbCustomerId.getItems().add(customerDTO.getId());
@@ -219,7 +210,6 @@ public class PlaceOrderFormController {
 
     private void loadAllItemCodes() {
         try {
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             ArrayList<ItemDTO> all = purchaseOrderBO.getAllItems();
             for (ItemDTO itemDTO : all) {
                 cmbItemCode.getItems().add(itemDTO.getCode());
@@ -321,8 +311,6 @@ public class PlaceOrderFormController {
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
 
-        //tight Coupling //di
-        PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
         try {
            return purchaseOrderBO.purchaseOrder(orderId,orderDate,customerId,orderDetails);
         } catch (SQLException e) {
@@ -336,8 +324,6 @@ public class PlaceOrderFormController {
 
     public ItemDTO findItem(String code) {
         try {
-
-            PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
             return purchaseOrderBO.searchItem(code);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to find the Item " + code, e);
