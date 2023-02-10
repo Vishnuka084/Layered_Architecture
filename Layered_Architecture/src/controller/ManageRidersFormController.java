@@ -1,5 +1,6 @@
 package controller;
 
+import bo.RIderBO;
 import bo.RiderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -36,6 +37,7 @@ public class ManageRidersFormController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public TableView<RiderTM> tblRiders;
+    private final RIderBO riderBO = new RiderBOImpl();
 
 
     public void initialize() {
@@ -70,7 +72,7 @@ public class ManageRidersFormController {
 
         try {
 
-            RiderBOImpl riderBO = new RiderBOImpl();
+
             ArrayList<RiderDTO> allRider = riderBO.getAllRider();
 
             for (RiderDTO rider : allRider) {
@@ -123,8 +125,6 @@ public class ManageRidersFormController {
 
     private String generateNewId() {
         try {
-
-            RiderBOImpl riderBO = new RiderBOImpl();
             return riderBO.generateNewRiderNewID();
 
         } catch (SQLException e) {
@@ -169,8 +169,6 @@ public class ManageRidersFormController {
                 if (existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, rid + " already exists").show();
                 }
-
-                RiderBOImpl riderBO = new RiderBOImpl();
                 riderBO.inserRider(new RiderDTO(rid,name,address));
 
                 tblRiders.getItems().add(new RiderTM(rid, name, address));
@@ -187,7 +185,6 @@ public class ManageRidersFormController {
                 if (!existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + rid).show();
                 }
-                RiderBOImpl riderBO = new RiderBOImpl();
                 riderBO.updateRider(new RiderDTO(rid,name,address));
 
             } catch (SQLException e) {
@@ -206,8 +203,6 @@ public class ManageRidersFormController {
     }
 
     boolean existRider(String rid) throws SQLException, ClassNotFoundException {
-
-        RiderBOImpl riderBO = new RiderBOImpl();
         return riderBO.riderExite(rid);
 
     }
@@ -219,11 +214,7 @@ public class ManageRidersFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such rider associated with the rid " + rid).show();
             }
 
-            RiderBOImpl riderBO = new RiderBOImpl();
             riderBO.deleteRider(rid);
-
-
-
             tblRiders.getItems().remove(tblRiders.getSelectionModel().getSelectedItem());
             tblRiders.getSelectionModel().clearSelection();
             initUI();
