@@ -1,6 +1,7 @@
 package bo;
 
 import dao.CrudDAO;
+import dao.custom.RiderDAO;
 import dao.custom.impl.RiderDAOImpl;
 import model.RiderDTO;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 public class RiderBOImpl {
 
-    private CrudDAO<RiderDTO,String> riderDAO = new RiderDAOImpl();
+    private final RiderDAO riderDAO = new RiderDAOImpl();
 
     public ArrayList<RiderDTO> getAllRider() throws SQLException, ClassNotFoundException {
          return riderDAO.getAll();

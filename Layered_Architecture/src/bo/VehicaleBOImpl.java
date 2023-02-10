@@ -1,6 +1,7 @@
 package bo;
 
 import dao.CrudDAO;
+import dao.custom.VehicaleDAO;
 import dao.custom.impl.VehicaleDAOImpl;
 import model.CustomerDTO;
 import model.VehicaleDTO;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class VehicaleBOImpl {
-    private final CrudDAO<VehicaleDTO,String> vehicaleDAO = new VehicaleDAOImpl();
+    private final VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
 
     public ArrayList<VehicaleDTO> getAllVehicale() throws SQLException, ClassNotFoundException {
         return vehicaleDAO.getAll();
