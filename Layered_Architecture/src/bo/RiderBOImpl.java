@@ -2,7 +2,6 @@ package bo;
 
 import dao.CrudDAO;
 import dao.custom.impl.RiderDAOImpl;
-import model.CustomerDTO;
 import model.RiderDTO;
 
 import java.sql.SQLException;

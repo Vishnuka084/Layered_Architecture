@@ -105,9 +105,9 @@ public class PlaceOrderFormController {
 
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
-              //          CustomerDTO search = customerDAO.search(newValue + "");
+
                         PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
-                        purchaseOrderBO.searchCustomer(newValue + "")
+                        CustomerDTO search = purchaseOrderBO.searchCustomer(newValue + "");
                         txtCustomerName.setText(search.getName());
                     } catch (SQLException e) {
                         new Alert(Alert.AlertType.ERROR, "Failed to find the customer " + newValue + "" + e).show();
