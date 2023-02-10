@@ -6,9 +6,7 @@ import dao.custom.OrderDAO;
 import dao.custom.OrderDetailsDAO;
 import dao.custom.impl.*;
 import db.DBConnection;
-import model.ItemDTO;
-import model.OrderDTO;
-import model.OrderDetailDTO;
+import model.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -24,7 +22,6 @@ public class PurchaseOrderBOImpl {
     private final QueryDAOImpl queryDAO = new QueryDAOImpl();
 
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
-
         // transaction
             Connection connection = DBConnection.getDbConnection().getConnection();
             if (orderDAO.exist(orderId)) {
@@ -64,5 +61,13 @@ public class PurchaseOrderBOImpl {
             connection.setAutoCommit(true);
             return true;
  //       return false;
+    }
+
+    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+       return customerDAO.search(id);
+    }
+
+    public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
+       return  itemDAO.search(code);
     }
 }
