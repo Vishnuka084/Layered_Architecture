@@ -1,7 +1,7 @@
 package controller;
 
-import bo.VehicaleBO;
-import bo.VehicaleBOImpl;
+import bo.custom.VehicaleBO;
+import bo.custom.impl.VehicaleBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;

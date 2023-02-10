@@ -1,11 +1,9 @@
 package controller;
 
-import bo.RIderBO;
-import bo.RiderBOImpl;
+import bo.custom.RIderBO;
+import bo.custom.impl.RiderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CrudDAO;
-import dao.custom.impl.RiderDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,6 +1,6 @@
-package bo;
+package bo.custom.impl;
 
-import dao.CrudDAO;
+import bo.custom.RIderBO;
 import dao.custom.RiderDAO;
 import dao.custom.impl.RiderDAOImpl;
 import model.RiderDTO;
@@ -8,7 +8,7 @@ import model.RiderDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RiderBOImpl implements RIderBO{
+public class RiderBOImpl implements RIderBO {
 
     private final RiderDAO riderDAO = new RiderDAOImpl();
 

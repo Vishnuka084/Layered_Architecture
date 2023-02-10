@@ -1,6 +1,7 @@
-package bo;
+package bo.custom.impl;
 
 
+import bo.custom.VehicaleBO;
 import dao.custom.VehicaleDAO;
 import dao.custom.impl.VehicaleDAOImpl;
 
