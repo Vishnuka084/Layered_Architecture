@@ -11,6 +11,7 @@ import model.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseOrderBOImpl {
@@ -69,5 +70,25 @@ public class PurchaseOrderBOImpl {
 
     public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
        return  itemDAO.search(code);
+    }
+
+    public boolean checkItemsIsAvailabel(String code) throws SQLException, ClassNotFoundException {
+        return itemDAO.exist(code);
+    }
+
+    public boolean checkCustomerIsAvailabel(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.exist(id);
+    }
+
+    public String generateNewOrderID() throws SQLException, ClassNotFoundException {
+       return orderDAO.generateNewId();
+    }
+
+    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
+        return customerDAO.getAll();
+    }
+
+    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
+        return ItemDAO.getAll();
     }
 }
