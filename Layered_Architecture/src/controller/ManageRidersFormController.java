@@ -1,5 +1,6 @@
 package controller;
 
+import bo.RiderBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import dao.CrudDAO;
@@ -35,8 +36,6 @@ public class ManageRidersFormController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public TableView<RiderTM> tblRiders;
-    //property injection
-    private CrudDAO<RiderDTO,String> riderDAO = new RiderDAOImpl();
 
 
     public void initialize() {
@@ -71,7 +70,8 @@ public class ManageRidersFormController {
 
         try {
 
-            ArrayList<RiderDTO> allRider = riderDAO.getAll();
+            RiderBOImpl riderBO = new RiderBOImpl();
+            ArrayList<RiderDTO> allRider = riderBO.getAllRider();
 
             for (RiderDTO rider : allRider) {
                 tblRiders.getItems().add(new RiderTM(rider.getRid(),rider.getName(),rider.getAddress()));
@@ -124,7 +124,9 @@ public class ManageRidersFormController {
     private String generateNewId() {
         try {
 
-            return riderDAO.generateNewId();
+            RiderBOImpl riderBO = new RiderBOImpl();
+            return riderBO.generateNewRiderNewID();
+
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new rid " + e.getMessage()).show();
         } catch (ClassNotFoundException e) {
@@ -168,7 +170,8 @@ public class ManageRidersFormController {
                     new Alert(Alert.AlertType.ERROR, rid + " already exists").show();
                 }
 
-                riderDAO.insert(new RiderDTO(rid,name,address));
+                RiderBOImpl riderBO = new RiderBOImpl();
+                riderBO.inserRider(new RiderDTO(rid,name,address));
 
                 tblRiders.getItems().add(new RiderTM(rid, name, address));
             } catch (SQLException e) {
@@ -184,8 +187,8 @@ public class ManageRidersFormController {
                 if (!existRider(rid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + rid).show();
                 }
-
-                riderDAO.Update(new RiderDTO(rid,name,address));
+                RiderBOImpl riderBO = new RiderBOImpl();
+                riderBO.updateRider(new RiderDTO(rid,name,address));
 
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the customer " + rid + e.getMessage()).show();
@@ -204,7 +207,8 @@ public class ManageRidersFormController {
 
     boolean existRider(String rid) throws SQLException, ClassNotFoundException {
 
-        return riderDAO.exist(rid);
+        RiderBOImpl riderBO = new RiderBOImpl();
+        return riderBO.riderExite(rid);
 
     }
 
@@ -215,8 +219,9 @@ public class ManageRidersFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such rider associated with the rid " + rid).show();
             }
 
+            RiderBOImpl riderBO = new RiderBOImpl();
+            riderBO.deleteRider(rid);
 
-            riderDAO.delete(rid);
 
 
             tblRiders.getItems().remove(tblRiders.getSelectionModel().getSelectedItem());
