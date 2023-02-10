@@ -1,9 +1,8 @@
 package controller;
 
+import bo.VehicaleBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.CrudDAO;
-import dao.custom.impl.VehicaleDAOImpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,8 +35,6 @@ public class ManageVehicaleFormController {
     public JFXButton btnDelete;
     public TableView<VehicaleTM> tblVehicale;
 
-    //property injection (DI)
-    private final CrudDAO<VehicaleDTO,String> vehicaleDAO = new VehicaleDAOImpl();
 
 
     public void initialize() {
@@ -71,8 +68,8 @@ public class ManageVehicaleFormController {
         tblVehicale.getItems().clear();
         try {
 
-
-            ArrayList<VehicaleDTO> allVehicales = vehicaleDAO.getAll();
+            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+            ArrayList<VehicaleDTO> allVehicales = vehicaleBO.getAllVehicale();
 
             for (VehicaleDTO vehicale : allVehicales) {
                 tblVehicale.getItems().add(new VehicaleTM(vehicale.getVid(),vehicale.getName(),vehicale.getColour()));
@@ -103,7 +100,8 @@ public class ManageVehicaleFormController {
     private String generateNewId() {
         try {
 
-            return vehicaleDAO.generateNewId();
+            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+            return vehicaleBO.generateNewVehicaleNewID();
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to generate a new vid " + e.getMessage()).show();
@@ -149,7 +147,8 @@ public class ManageVehicaleFormController {
                 if (existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, vid + " already exists").show();
                 }
-                vehicaleDAO.insert(new VehicaleDTO(vid,name,colour));
+                VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+                vehicaleBO.inserVehicale(new VehicaleDTO(vid,name,colour));
 
                 tblVehicale.getItems().add(new VehicaleTM(vid, name, colour));
             } catch (SQLException e) {
@@ -165,7 +164,9 @@ public class ManageVehicaleFormController {
                 if (!existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the id " + vid).show();
                 }
-                vehicaleDAO.Update(new VehicaleDTO(vid,name,colour));
+                VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+                vehicaleBO.updateVehicale(new VehicaleDTO(vid,name,colour));
+
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the vehicale " + vid + e.getMessage()).show();
             } catch (ClassNotFoundException e) {
@@ -188,8 +189,9 @@ public class ManageVehicaleFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the vid " + vid).show();
             }
 
+            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+            vehicaleBO.deleteVehicale(vid);
 
-            vehicaleDAO.delete(vid);
 
             tblVehicale.getItems().remove(tblVehicale.getSelectionModel().getSelectedItem());
             tblVehicale.getSelectionModel().clearSelection();
@@ -203,8 +205,9 @@ public class ManageVehicaleFormController {
     }
 
     boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
+        VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+        return vehicaleBO.vehicaleExite(vid);
 
-        return vehicaleDAO.exist(vid);
     }
 
     private void initUI() {

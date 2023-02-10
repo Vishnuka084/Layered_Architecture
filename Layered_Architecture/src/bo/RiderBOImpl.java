@@ -22,12 +22,12 @@ public class RiderBOImpl {
     public boolean updateRider(RiderDTO dto) throws SQLException, ClassNotFoundException {
         return riderDAO.Update(dto);
     }
-    public boolean riderExite(String id) throws SQLException, ClassNotFoundException {
-        return riderDAO.exist(id);
+    public boolean riderExite(String rid) throws SQLException, ClassNotFoundException {
+        return riderDAO.exist(rid);
     }
 
-    public boolean deleteRider(String id) throws SQLException, ClassNotFoundException {
-        return riderDAO.delete(id);
+    public boolean deleteRider(String rid) throws SQLException, ClassNotFoundException {
+        return riderDAO.delete(rid);
     }
     public String generateNewRiderNewID() throws SQLException, ClassNotFoundException {
         return riderDAO.generateNewId();
