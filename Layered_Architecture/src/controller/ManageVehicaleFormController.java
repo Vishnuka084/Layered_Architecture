@@ -1,5 +1,6 @@
 package controller;
 
+import bo.VehicaleBO;
 import bo.VehicaleBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -35,7 +36,7 @@ public class ManageVehicaleFormController {
     public JFXButton btnDelete;
     public TableView<VehicaleTM> tblVehicale;
 
-
+    private VehicaleBO vehicaleBO = new VehicaleBOImpl();
 
     public void initialize() {
         tblVehicale.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("vid"));
@@ -68,7 +69,7 @@ public class ManageVehicaleFormController {
         tblVehicale.getItems().clear();
         try {
 
-            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
+
             ArrayList<VehicaleDTO> allVehicales = vehicaleBO.getAllVehicale();
 
             for (VehicaleDTO vehicale : allVehicales) {
@@ -100,7 +101,6 @@ public class ManageVehicaleFormController {
     private String generateNewId() {
         try {
 
-            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
             return vehicaleBO.generateNewVehicaleNewID();
 
         } catch (SQLException e) {
@@ -147,7 +147,6 @@ public class ManageVehicaleFormController {
                 if (existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, vid + " already exists").show();
                 }
-                VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
                 vehicaleBO.inserVehicale(new VehicaleDTO(vid,name,colour));
 
                 tblVehicale.getItems().add(new VehicaleTM(vid, name, colour));
@@ -164,7 +163,6 @@ public class ManageVehicaleFormController {
                 if (!existVehicale(vid)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the id " + vid).show();
                 }
-                VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
                 vehicaleBO.updateVehicale(new VehicaleDTO(vid,name,colour));
 
             } catch (SQLException e) {
@@ -188,8 +186,6 @@ public class ManageVehicaleFormController {
             if (!existVehicale(vid)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such vehicale associated with the vid " + vid).show();
             }
-
-            VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
             vehicaleBO.deleteVehicale(vid);
 
 
@@ -205,7 +201,6 @@ public class ManageVehicaleFormController {
     }
 
     boolean existVehicale(String vid) throws SQLException, ClassNotFoundException {
-        VehicaleBOImpl vehicaleBO = new VehicaleBOImpl();
         return vehicaleBO.vehicaleExite(vid);
 
     }
