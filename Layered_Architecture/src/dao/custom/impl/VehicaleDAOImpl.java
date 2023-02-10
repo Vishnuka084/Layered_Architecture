@@ -3,14 +3,13 @@ package dao.custom.impl;
 import dao.SQLUtil;
 import dao.custom.VehicaleDAO;
 
+import db.DBConnection;
 import model.VehicaleDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class VehicaleDAOImpl implements VehicaleDAO {
-
-
     @Override
     public ArrayList<VehicaleDTO> getAll() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getDbConnection().getConnection();
