@@ -4,7 +4,7 @@ import dao.SQLUtil;
 import dao.custom.VehicaleDAO;
 
 import db.DBConnection;
-import model.VehicaleDTO;
+import dto.VehicaleDTO;
 
 import java.sql.*;
 import java.util.ArrayList;

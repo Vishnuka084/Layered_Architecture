@@ -1,27 +1,27 @@
-package model;
+package dto;
 
 import java.io.Serializable;
 
-public class RiderDTO implements Serializable {
-    private String rid;
+public class CustomerDTO implements Serializable {
+    private String id;
     private String name;
     private String address;
 
-    public RiderDTO() {
+    public CustomerDTO() {
     }
 
-    public RiderDTO(String rid, String name, String address) {
-        this.rid = rid;
+    public CustomerDTO(String id, String name, String address) {
+        this.id = id;
         this.name = name;
         this.address = address;
     }
 
-    public String getRid() {
-        return rid;
+    public String getId() {
+        return id;
     }
 
-    public void setRid(String rid) {
-        this.rid = rid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -42,8 +42,8 @@ public class RiderDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "RiderDTO{" +
-                "rid='" + rid + '\'' +
+        return "CustomerDTO{" +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 '}';

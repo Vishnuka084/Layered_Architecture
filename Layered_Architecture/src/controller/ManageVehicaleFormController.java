@@ -1,9 +1,7 @@
 package controller;
 
 import bo.BOFactory;
-import bo.SuperBO;
 import bo.custom.VehicaleBO;
-import bo.custom.impl.VehicaleBOImpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -18,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.VehicaleDTO;
+import dto.VehicaleDTO;
 import view.tdm.VehicaleTM;
 
 import java.io.IOException;

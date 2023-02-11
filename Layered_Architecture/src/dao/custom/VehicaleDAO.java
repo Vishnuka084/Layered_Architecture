@@ -1,7 +1,7 @@
 package dao.custom;
 
 import dao.CrudDAO;
-import model.VehicaleDTO;
+import dto.VehicaleDTO;
 
 public interface VehicaleDAO extends CrudDAO<VehicaleDTO,String> {
 }

@@ -1,7 +1,7 @@
 package dao.custom;
 
 import dao.CrudDAO;
-import model.RiderDTO;
+import dto.RiderDTO;
 
 public interface RiderDAO extends CrudDAO<RiderDTO,String> {
 }

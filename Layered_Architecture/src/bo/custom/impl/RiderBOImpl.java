@@ -2,10 +2,8 @@ package bo.custom.impl;
 
 import bo.custom.RIderBO;
 import dao.DAOFactory;
-import dao.SuperDAO;
 import dao.custom.RiderDAO;
-import dao.custom.impl.RiderDAOImpl;
-import model.RiderDTO;
+import dto.RiderDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

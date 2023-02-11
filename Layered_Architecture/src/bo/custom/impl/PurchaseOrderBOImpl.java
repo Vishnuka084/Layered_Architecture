@@ -3,8 +3,11 @@ package bo.custom.impl;
 import bo.custom.PurchaseOrderBO;
 import dao.DAOFactory;
 import dao.custom.*;
-import dao.custom.impl.*;
 import db.DBConnection;
+import dto.CustomerDTO;
+import dto.ItemDTO;
+import dto.OrderDTO;
+import dto.OrderDetailDTO;
 import model.*;
 
 import java.sql.Connection;

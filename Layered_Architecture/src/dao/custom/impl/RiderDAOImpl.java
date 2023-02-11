@@ -2,7 +2,7 @@ package dao.custom.impl;
 
 import dao.SQLUtil;
 import dao.custom.RiderDAO;
-import model.RiderDTO;
+import dto.RiderDTO;
 
 import java.sql.*;
 import java.util.ArrayList;

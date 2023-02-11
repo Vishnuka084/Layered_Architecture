@@ -2,10 +2,8 @@ package bo.custom.impl;
 
 import bo.custom.CustomerBO;
 import dao.DAOFactory;
-import dao.SuperDAO;
 import dao.custom.CustomerDAO;
-import dao.custom.impl.CustomerDAOImpl;
-import model.CustomerDTO;
+import dto.CustomerDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

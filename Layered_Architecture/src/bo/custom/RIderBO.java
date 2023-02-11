@@ -1,7 +1,7 @@
 package bo.custom;
 
 import bo.SuperBO;
-import model.RiderDTO;
+import dto.RiderDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

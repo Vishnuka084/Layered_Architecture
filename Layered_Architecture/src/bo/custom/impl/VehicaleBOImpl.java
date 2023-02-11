@@ -3,12 +3,9 @@ package bo.custom.impl;
 
 import bo.custom.VehicaleBO;
 import dao.DAOFactory;
-import dao.SuperDAO;
-import dao.custom.RiderDAO;
 import dao.custom.VehicaleDAO;
-import dao.custom.impl.VehicaleDAOImpl;
 
-import model.VehicaleDTO;
+import dto.VehicaleDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

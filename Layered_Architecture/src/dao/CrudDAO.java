@@ -1,8 +1,6 @@
 package dao;
 
 
-import model.CustomerDTO;
-
 import java.sql.*;
 import java.util.ArrayList;
 
