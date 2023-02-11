@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class QueryDAOImpl implements QueryDAO  {
+public class QueryDAOImpl implements QueryDAO {
 
     @Override
     public  ArrayList<CustomDTO> searchOrderByOrderID(String id)throws SQLException,ClassNotFoundException{
