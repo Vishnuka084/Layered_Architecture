@@ -219,7 +219,7 @@ public class ManageVehicaleFormController {
 
     @FXML
     private void navigateToHome(MouseEvent event) throws IOException {
-        URL resource = this.getClass().getResource("/view/main-form.fxml");
+        URL resource = this.getClass().getResource("/view/Admin-main-form.fxml");
         Parent root = FXMLLoader.load(resource);
         Scene scene = new Scene(root);
         Stage primaryStage = (Stage) (this.root.getScene().getWindow());

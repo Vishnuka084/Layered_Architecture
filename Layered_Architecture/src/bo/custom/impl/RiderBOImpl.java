@@ -1,6 +1,8 @@
 package bo.custom.impl;
 
 import bo.custom.RIderBO;
+import dao.DAOFactory;
+import dao.SuperDAO;
 import dao.custom.RiderDAO;
 import dao.custom.impl.RiderDAOImpl;
 import model.RiderDTO;
@@ -10,11 +12,12 @@ import java.util.ArrayList;
 
 public class RiderBOImpl implements RIderBO {
 
-    private final RiderDAO riderDAO = new RiderDAOImpl();
+    //private final RiderDAO riderDAO = new RiderDAOImpl();
+     private final RiderDAO riderDAO = (RiderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.RIDER);
 
     @Override
     public ArrayList<RiderDTO> getAllRider() throws SQLException, ClassNotFoundException {
-         return riderDAO.getAll();
+        return riderDAO.getAll();
     }
     @Override
 

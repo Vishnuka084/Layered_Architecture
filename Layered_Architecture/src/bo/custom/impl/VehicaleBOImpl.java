@@ -2,6 +2,9 @@ package bo.custom.impl;
 
 
 import bo.custom.VehicaleBO;
+import dao.DAOFactory;
+import dao.SuperDAO;
+import dao.custom.RiderDAO;
 import dao.custom.VehicaleDAO;
 import dao.custom.impl.VehicaleDAOImpl;
 
@@ -11,7 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class VehicaleBOImpl implements VehicaleBO {
-    private final VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
+//    private final VehicaleDAO vehicaleDAO = new VehicaleDAOImpl();
+      private final  VehicaleDAO vehicaleDAO = (VehicaleDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VEHICALE);
 
     @Override
     public ArrayList<VehicaleDTO> getAllVehicale() throws SQLException, ClassNotFoundException {
