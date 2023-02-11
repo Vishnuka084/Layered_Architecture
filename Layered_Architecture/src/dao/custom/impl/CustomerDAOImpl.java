@@ -3,6 +3,7 @@ package dao.custom.impl;
 import dao.SQLUtil;
 import dao.custom.CustomerDAO;
 import dto.CustomerDTO;
+import entity.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
-    public ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("SELECT * FROM Customer");
         ArrayList<CustomerDTO> allCustomers = new ArrayList<>();
         while (rst.next()) {
@@ -20,7 +21,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return allCustomers;
     }
     @Override
-    public boolean insert(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+    public boolean insert(Customer customerDTO) throws SQLException, ClassNotFoundException {
        return SQLUtil.executeUpdate("INSERT INTO Customer (id,name, address) VALUES (?,?,?)",customerDTO.getId(),customerDTO.getName(),customerDTO.getAddress());
 
     }
@@ -32,10 +33,10 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public CustomerDTO search(String id) throws SQLException, ClassNotFoundException {
+    public Customer search(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("SELECT * FROM Customer WHERE id=?", id);
         if (rst.next()) {
-            return new CustomerDTO(rst.getString(1),rst.getString(2),rst.getString(3));
+            return new Customer(rst.getString(1),rst.getString(2),rst.getString(3));
         }
         return null;
     }
@@ -47,7 +48,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Boolean Update(CustomerDTO customerDTO) throws SQLException, ClassNotFoundException {
+    public Boolean Update(Customer customerDTO) throws SQLException, ClassNotFoundException {
          return SQLUtil.executeUpdate("UPDATE Customer SET name=?, address=? WHERE id=?",customerDTO.getName(),customerDTO.getAddress(),customerDTO.getId());
 
     }

@@ -146,7 +146,6 @@ public class ManageCustomersFormController {
                 }
 
                 customerBO.inserCustomer(new CustomerDTO(id,name,address));
-
                 tblCustomers.getItems().add(new CustomerTM(id, name, address));
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to save the customer " + e.getMessage()).show();
