@@ -14,7 +14,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/view/Splash-Sreen.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/lk/ijse/pos/view/Splash-Sreen.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Transe Courier System");
