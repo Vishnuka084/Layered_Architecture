@@ -14,15 +14,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("SELECT * FROM Customer");
-        ArrayList<CustomerDTO> allCustomers = new ArrayList<>();
+        ArrayList<Customer> allCustomers = new ArrayList<>();
         while (rst.next()) {
-            allCustomers.add(new CustomerDTO(rst.getString(1), rst.getString(2), rst.getString(3)));
+            allCustomers.add(new Customer(rst.getString(1), rst.getString(2), rst.getString(3)));
         }
         return allCustomers;
     }
     @Override
-    public boolean insert(Customer customerDTO) throws SQLException, ClassNotFoundException {
-       return SQLUtil.executeUpdate("INSERT INTO Customer (id,name, address) VALUES (?,?,?)",customerDTO.getId(),customerDTO.getName(),customerDTO.getAddress());
+    public boolean insert(Customer entity) throws SQLException, ClassNotFoundException {
+       return SQLUtil.executeUpdate("INSERT INTO Customer (id,name, address) VALUES (?,?,?)",entity.getId(),entity.getName(),entity.getAddress());
 
     }
 
@@ -41,15 +41,14 @@ public class CustomerDAOImpl implements CustomerDAO {
         return null;
     }
 
-
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
            return SQLUtil.executeUpdate("DELETE FROM Customer WHERE id=?", id);
     }
 
     @Override
-    public Boolean Update(Customer customerDTO) throws SQLException, ClassNotFoundException {
-         return SQLUtil.executeUpdate("UPDATE Customer SET name=?, address=? WHERE id=?",customerDTO.getName(),customerDTO.getAddress(),customerDTO.getId());
+    public Boolean Update(Customer entity) throws SQLException, ClassNotFoundException {
+         return SQLUtil.executeUpdate("UPDATE Customer SET name=?, address=? WHERE id=?",entity.getName(),entity.getAddress(),entity.getId());
 
     }
 

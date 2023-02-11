@@ -3,6 +3,7 @@ package dao.custom.impl;
 import dao.SQLUtil;
 import dao.custom.RiderDAO;
 import dto.RiderDTO;
+import entity.Rider;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,18 +11,18 @@ import java.util.ArrayList;
 public class RiderDAOImpl implements RiderDAO {
 
     @Override
-    public ArrayList<RiderDTO> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Rider> getAll() throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("SELECT * FROM Rider");
-        ArrayList<RiderDTO> allRider = new ArrayList<>();
+        ArrayList<Rider> allRider = new ArrayList<>();
         while (rst.next()) {
-            allRider.add(new RiderDTO(rst.getString(1), rst.getString(2), rst.getString(3)));
+            allRider.add(new Rider(rst.getString(1), rst.getString(2), rst.getString(3)));
         }
         return allRider;
     }
 
     @Override
-    public boolean insert(RiderDTO dto) throws SQLException, ClassNotFoundException {
-         return SQLUtil.executeUpdate("INSERT INTO Rider (rid,name, address) VALUES (?,?,?)",dto.getRid(),dto.getName(),dto.getAddress());
+    public boolean insert(Rider entity) throws SQLException, ClassNotFoundException {
+         return SQLUtil.executeUpdate("INSERT INTO Rider (rid,name, address) VALUES (?,?,?)",entity.getRid(),entity.getName(),entity.getAddress());
 
     }
 
@@ -32,7 +33,7 @@ public class RiderDAOImpl implements RiderDAO {
     }
 
     @Override
-    public RiderDTO search(String s) throws SQLException, ClassNotFoundException {
+    public Rider search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -42,8 +43,8 @@ public class RiderDAOImpl implements RiderDAO {
     }
 
     @Override
-    public Boolean Update(RiderDTO dto) throws SQLException, ClassNotFoundException {
-        return SQLUtil.executeUpdate("UPDATE Rider SET name=?, address=? WHERE rid=?",dto.getName(),dto.getAddress(),dto.getRid());
+    public Boolean Update(Rider entity) throws SQLException, ClassNotFoundException {
+        return SQLUtil.executeUpdate("UPDATE Rider SET name=?, address=? WHERE rid=?",entity.getName(),entity.getAddress(),entity.getRid());
     }
 
     @Override
