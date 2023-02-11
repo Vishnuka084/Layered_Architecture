@@ -8,6 +8,9 @@ import dto.CustomerDTO;
 import dto.ItemDTO;
 import dto.OrderDTO;
 import dto.OrderDetailDTO;
+import entity.Item;
+import entity.OrderDetails;
+import entity.Orders;
 import model.*;
 
 import java.sql.Connection;
@@ -26,14 +29,14 @@ public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
     private final QueryDAO queryDAO =(QueryDAO)DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUERYDAO);
 
     @Override
-    public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) throws SQLException, ClassNotFoundException {
+    public boolean purchaseOrder(OrderDTO dto) throws SQLException, ClassNotFoundException {
         // transaction
             Connection connection = DBConnection.getDbConnection().getConnection();
-            if (orderDAO.exist(orderId)) {
+            if (orderDAO.exist(dto.getOrderId())) {
 
             }
             connection.setAutoCommit(false);
-            boolean insert = orderDAO.insert(new OrderDTO(orderId, orderDate, customerId));
+            boolean insert = orderDAO.insert(new Orders(dto.getOrderId(), dto.getOrderDate(),dto.getCustomerId()));
 
             if (insert) {
                 connection.rollback();
@@ -41,8 +44,8 @@ public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
                 return false;
             }
 
-            for (OrderDetailDTO detail : orderDetails) {
-                boolean insert1 = orderDetailsDAO.insert(detail);
+            for (OrderDetailDTO detail : dto.getOrderDetails()) {
+                boolean insert1 = orderDetailsDAO.insert(new OrderDetails(detail.getOid(),detail.getItemCode(),detail.getQty(),detail.getUnitPrice()));
 
                 if (insert1) {
                     connection.rollback();
@@ -53,7 +56,7 @@ public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
                 ItemDTO item = searchItem(detail.getItemCode());
                 item.setQtyOnHand(item.getQtyOnHand() - detail.getQty());
 
-                Boolean update = this.itemDAO.Update(item);
+                Boolean update = this.itemDAO.Update(new Item(item.getCode(),item.getDescription(),item.getQtyOnHand(),item.getUnitPrice()));
 
                 if (!update) {
                     connection.rollback();
