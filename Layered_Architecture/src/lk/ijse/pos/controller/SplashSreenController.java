@@ -21,7 +21,6 @@ public class SplashSreenController {
 
     public void initialize(){
         Timeline timeline = new Timeline();
-
         KeyFrame keyFrame1= new KeyFrame(Duration.millis(250), actionEvent ->{
             lblLoading.setText("Initializing Application....");
             rctLoading.setWidth(rctContainer.getWidth()*0.3);

@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
-
     //Exposed the Object creation logic
     private final CustomerDAO customerDAO =(CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
     private final ItemDAO itemDAO =(ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);

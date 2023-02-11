@@ -37,7 +37,6 @@ public class MainFormController {
     @FXML
     private Label lblDescription;
 
-
     public void initialize(URL url, ResourceBundle rb) {
         FadeTransition fadeIn = new FadeTransition(Duration.millis(2000), root);
         fadeIn.setFromValue(0.0);

@@ -40,7 +40,6 @@ public class ItemDAOImpl implements ItemDAO {
         return rst.next();
 
     }
-
     @Override
     public Item search(String code) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.executeQuery("SELECT * FROM Item WHERE code=?", code);
