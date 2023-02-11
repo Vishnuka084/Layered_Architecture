@@ -1,11 +1,12 @@
 package bo.custom;
 
+import bo.SuperBO;
 import model.VehicaleDTO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface VehicaleBO {
+public interface VehicaleBO extends SuperBO{
     ArrayList<VehicaleDTO> getAllVehicale() throws SQLException, ClassNotFoundException ;
     boolean inserVehicale(VehicaleDTO dto) throws SQLException, ClassNotFoundException;
     boolean updateVehicale(VehicaleDTO dto) throws SQLException, ClassNotFoundException;

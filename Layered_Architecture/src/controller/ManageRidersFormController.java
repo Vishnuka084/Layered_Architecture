@@ -1,5 +1,7 @@
 package controller;
 
+import bo.BOFactory;
+import bo.SuperBO;
 import bo.custom.RIderBO;
 import bo.custom.impl.RiderBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -35,10 +37,13 @@ public class ManageRidersFormController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public TableView<RiderTM> tblRiders;
-    private final RIderBO riderBO = new RiderBOImpl();
 
+ //   private final RIderBO riderBO = new RiderBOImpl();
+
+    private final  RIderBO riderBO = (RIderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.RIDER);
 
     public void initialize() {
+
         tblRiders.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("rid"));
         tblRiders.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblRiders.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("address"));

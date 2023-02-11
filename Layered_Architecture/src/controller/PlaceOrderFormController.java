@@ -1,5 +1,7 @@
 package controller;
 
+import bo.BOFactory;
+import bo.SuperBO;
 import bo.custom.PurchaseOrderBO;
 import bo.custom.impl.PurchaseOrderBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -34,7 +36,8 @@ import java.util.stream.Collectors;
 
 public class PlaceOrderFormController {
 
-    private PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
+  //private PurchaseOrderBO purchaseOrderBO = new PurchaseOrderBOImpl();
+    PurchaseOrderBO purchaseOrderBO = (PurchaseOrderBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PURCHASE_ORDER);
 
     public AnchorPane root;
     public JFXButton btnPlaceOrder;
@@ -53,6 +56,7 @@ public class PlaceOrderFormController {
     private String orderId;
 
     public void initialize() throws SQLException, ClassNotFoundException {
+
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
         tblOrderDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));

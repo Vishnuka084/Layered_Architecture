@@ -1,5 +1,7 @@
 package controller;
 
+import bo.BOFactory;
+import bo.SuperBO;
 import bo.custom.VehicaleBO;
 import bo.custom.impl.VehicaleBOImpl;
 import com.jfoenix.controls.JFXButton;
@@ -36,9 +38,11 @@ public class ManageVehicaleFormController {
     public JFXButton btnDelete;
     public TableView<VehicaleTM> tblVehicale;
 
-    private VehicaleBO vehicaleBO = new VehicaleBOImpl();
+//    private VehicaleBO vehicaleBO = new VehicaleBOImpl();
+    private final VehicaleBO vehicaleBO = (VehicaleBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.VEHICALE);
 
     public void initialize() {
+
         tblVehicale.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("vid"));
         tblVehicale.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
         tblVehicale.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("colour"));
