@@ -8,10 +8,11 @@ import dto.CustomerDTO;
 import dto.ItemDTO;
 import dto.OrderDTO;
 import dto.OrderDetailDTO;
+import entity.Customer;
 import entity.Item;
 import entity.OrderDetails;
 import entity.Orders;
-import model.*;
+
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -71,11 +72,14 @@ public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
     }
     @Override
     public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
-       return customerDAO.search(id);
+        Customer ent = customerDAO.search(id);
+        return new CustomerDTO(ent.getId(),ent.getName(),ent.getAddress());
     }
     @Override
     public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
-       return  itemDAO.search(code);
+        Item ent = itemDAO.search(code);
+        return new ItemDTO(ent.getCode(),ent.getDescription(),ent.getUnitPrice(),ent.getQtyOnHand());
+
     }
     @Override
     public boolean checkItemsIsAvailabel(String code) throws SQLException, ClassNotFoundException {
@@ -91,10 +95,23 @@ public class PurchaseOrderBOImpl  implements PurchaseOrderBO {
     }
     @Override
     public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
-        return customerDAO.getAll();
+        ArrayList<Customer> all = customerDAO.getAll();
+        ArrayList<CustomerDTO> allCustomer =new ArrayList<>();
+        for (Customer ent : all) {
+            allCustomer.add(new CustomerDTO(ent.getId(),ent.getName(),ent.getAddress()));
+
+        }
+        return allCustomer;
+
     }
     @Override
     public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
-        return itemDAO.getAll();
+        ArrayList<Item> all = itemDAO.getAll();
+        ArrayList<ItemDTO> allItems =new ArrayList<>();
+        for (Item ent : all) {
+            allItems.add(new ItemDTO(ent.getCode(),ent.getDescription(),ent.getUnitPrice(),ent.getQtyOnHand()));
+        }
+
+        return allItems;
     }
 }
