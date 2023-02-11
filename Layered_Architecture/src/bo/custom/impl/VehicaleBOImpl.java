@@ -24,6 +24,7 @@ public class VehicaleBOImpl implements VehicaleBO {
             allVehiccale.add(new VehicaleDTO(vehicale.getVid(),vehicale.getName(),vehicale.getColour()));
 
         }
+        return allVehiccale;
 
     }
     @Override
