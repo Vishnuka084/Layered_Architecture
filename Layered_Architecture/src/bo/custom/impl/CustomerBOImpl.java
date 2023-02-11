@@ -29,7 +29,7 @@ public class CustomerBOImpl implements CustomerBO {
     }
     @Override
     public boolean updateCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException {
-         return customerDAO.Update(dto);
+         return customerDAO.Update(new Customer(dto.getId(),dto.getName(),dto.getAddress()));
     }
     @Override
     public boolean customerExite(String id) throws SQLException, ClassNotFoundException {

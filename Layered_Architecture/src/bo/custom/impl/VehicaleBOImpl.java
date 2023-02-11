@@ -5,7 +5,9 @@ import bo.custom.VehicaleBO;
 import dao.DAOFactory;
 import dao.custom.VehicaleDAO;
 
+import dto.RiderDTO;
 import dto.VehicaleDTO;
+import entity.Vehicale;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,15 +18,21 @@ public class VehicaleBOImpl implements VehicaleBO {
 
     @Override
     public ArrayList<VehicaleDTO> getAllVehicale() throws SQLException, ClassNotFoundException {
-        return vehicaleDAO.getAll();
+        ArrayList<Vehicale> all = vehicaleDAO.getAll();
+        ArrayList<VehicaleDTO> allVehiccale = new ArrayList<>();
+        for (Vehicale vehicale : all) {
+            allVehiccale.add(new VehicaleDTO(vehicale.getVid(),vehicale.getName(),vehicale.getColour()));
+
+        }
+
     }
     @Override
     public boolean inserVehicale(VehicaleDTO dto) throws SQLException, ClassNotFoundException {
-        return  vehicaleDAO.insert(dto);
+        return  vehicaleDAO.insert(new Vehicale(dto.getVid(),dto.getName(), dto.getColour()));
     }
     @Override
     public boolean updateVehicale(VehicaleDTO dto) throws SQLException, ClassNotFoundException {
-        return vehicaleDAO.Update(dto);
+        return vehicaleDAO.Update(new Vehicale(dto.getVid(),dto.getName(), dto.getColour()));
     }
     @Override
     public boolean vehicaleExite(String vid) throws SQLException, ClassNotFoundException {
