@@ -132,14 +132,14 @@ public class ManageItemsFormController {
 
         String code = tblItems.getSelectionModel().getSelectedItem().getCode();
         try {
-                if (!existItem(code)) {
-                    new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
-                }
-                itemBO.deleteItem(code);
+            if (!existItem(code)) {
+                new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
+            }
+            itemBO.deleteItem(code);
 
-                tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
-                tblItems.getSelectionModel().clearSelection();
-                initUI();
+            tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
+            tblItems.getSelectionModel().clearSelection();
+            initUI();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to delete the item " + code).show();
         } catch (ClassNotFoundException e) {
@@ -174,7 +174,7 @@ public class ManageItemsFormController {
                 if (existItem(code)) {
                     new Alert(Alert.AlertType.ERROR, code + " already exists").show();
                 }
-                itemBO.inserItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                itemBO.inserItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
                 tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
 
@@ -189,7 +189,7 @@ public class ManageItemsFormController {
                 if (!existItem(code)) {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
                 }
-                itemBO.updateItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                itemBO.updateItem(new ItemDTO(code, description, unitPrice, qtyOnHand));
 
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();

@@ -1,6 +1,6 @@
 package lk.ijse.pos.entity;
 
-public class Rider {
+public class Rider implements SuperEntity {
     private String rid;
     private String name;
     private String address;

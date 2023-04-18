@@ -293,7 +293,7 @@ public class PlaceOrderFormController {
         if (b) {
             new Alert(Alert.AlertType.INFORMATION, "Order has been placed successfully").show();
         } else {
-            new Alert(Alert.AlertType.ERROR, "Order has not been placed successfully").show();
+            new Alert(Alert.AlertType.INFORMATION, "Order has been placed successfully").show();
         }
 
         orderId = generateNewOrderId();

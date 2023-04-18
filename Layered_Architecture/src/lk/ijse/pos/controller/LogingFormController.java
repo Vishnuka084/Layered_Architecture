@@ -26,14 +26,14 @@ public class LogingFormController {
     public JFXTextField txtAdminName;
     public JFXPasswordField txtPassword;
 
-    public void initialize(){
+    public void initialize() {
         setDateAndTime();
     }
 
     private void setDateAndTime() {
-        Timeline time =new Timeline(
+        Timeline time = new Timeline(
                 new KeyFrame(Duration.ZERO, event -> {
-                    DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("HH:mm:ss");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
                     lblTime1.setText(LocalDateTime.now().format(formatter));
 
                 }), new KeyFrame(Duration.seconds(1)));
@@ -43,7 +43,7 @@ public class LogingFormController {
 
     public void CreateNewAccountOnAction(ActionEvent actionEvent) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/CreateAdminAccount.fxml"));
-        Stage stage= new Stage();
+        Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.show();
     }
@@ -61,7 +61,7 @@ public class LogingFormController {
         if (adminName.trim().equals("vishnuka") && password.trim().equals("2001")) {
             new Alert(Alert.AlertType.INFORMATION, "Loging has successfully").show();
             Parent parent = FXMLLoader.load(getClass().getResource("../view/Admin-main-form.fxml"));
-            Stage stage= new Stage();
+            Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             stage.show();
 
@@ -74,7 +74,7 @@ public class LogingFormController {
 
     }
 
-    private void Clear(){
+    private void Clear() {
         txtAdminName.clear();
         txtPassword.clear();
     }

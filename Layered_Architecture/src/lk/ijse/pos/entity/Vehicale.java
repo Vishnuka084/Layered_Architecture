@@ -1,6 +1,6 @@
 package lk.ijse.pos.entity;
 
-public class Vehicale {
+public class Vehicale implements SuperEntity{
     private String vid;
     private String name;
     private String colour;

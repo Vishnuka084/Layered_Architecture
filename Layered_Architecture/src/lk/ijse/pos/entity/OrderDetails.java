@@ -2,7 +2,7 @@ package lk.ijse.pos.entity;
 
 import java.math.BigDecimal;
 
-public class OrderDetails {
+public class OrderDetails implements SuperEntity {
     private String oid;
     private String itemCode;
     private int qty;

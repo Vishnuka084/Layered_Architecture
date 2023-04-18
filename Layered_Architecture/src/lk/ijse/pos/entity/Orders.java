@@ -2,7 +2,7 @@ package lk.ijse.pos.entity;
 
 import java.time.LocalDate;
 
-public class Orders {
+public class Orders implements SuperEntity{
     private String oid;
     private LocalDate date;
     private String customerID;

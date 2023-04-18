@@ -1,6 +1,6 @@
 package lk.ijse.pos.entity;
 
-public class Customer {
+public class Customer implements SuperEntity{
     private String id;
     private String name;
     private String address;
